@@ -170,3 +170,9 @@ dist
 
 .dev.vars
 .wrangler/
+wrangler.toml
+
+# prisma
+prisma/migrations/
+prisma/dev.db
+prisma/dev.db-journal
