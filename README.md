@@ -41,7 +41,7 @@
    ```
 3. 接著執行 `npx wrangler deploy` 部署 worker 到 cloudflare 上
 4. 進入 [Line Notify](https://notify-bot.line.me/zh_TW/) 登入後點擊 **發行權杖** 按鈕
-5. ![image](https://github.com/skysea04/house_browser/assets/73434165/1fca4b11-acc7-4a5e-9aee-64a6b8640d81)
+   ![image](https://github.com/skysea04/house_browser/assets/73434165/1fca4b11-acc7-4a5e-9aee-64a6b8640d81)
    設定 Notify 名稱與對應通知群組後將 Token 記下來（沒有存下來就再也看不到了，需要重新申請喔）
 
 ### 使用教學
