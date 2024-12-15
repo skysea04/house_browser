@@ -20,14 +20,12 @@ model RentCondition {
   id           Int         @id @default(autoincrement())
   name         String?
   conditionUrl String?
-  RentHouse    RentHouse[]
 }
 
 model RentHouse {
   id              Int            @id
-  rentCondition   RentCondition? @relation(fields: [rentConditionId], references: [id])
   rentConditionId Int
-  area            String?
+  area            Int?
   url             String?
   price           Int?
   surrounding      String?

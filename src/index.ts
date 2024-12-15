@@ -15,7 +15,7 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
-import { getTokens, search } from './crowler';
+import { search } from './crowler';
 import { notify } from './line/services';
 import { PrismaClient } from '@prisma/client';
 import { PrismaD1 } from '@prisma/adapter-d1';
@@ -29,18 +29,19 @@ async function getHouseFromConditionAndNotifyNewHouse(
   prisma: PrismaClient,
   rentCondition: { id: number, conditionUrl: string },
 ) {
-	let { params, cookie, csrfToken }= await getTokens(rentCondition.conditionUrl)
-	if (!(params && cookie && csrfToken)) {
-		console.log('get token failed')
-		return;
-	}
+	// let { params, cookie, csrfToken }= await getTokens(rentCondition.conditionUrl)
+	// if (!(params && cookie && csrfToken)) {
+	// 	console.log('get token failed')
+	// 	return;
+	// }
 	const config = await prisma.config.findFirst();
 	if (!config) {
 		console.log('config not found')
 		return;
 	}
-	const houseDataArr = await search(params, cookie, csrfToken);
-	console.log(houseDataArr);
+	const params = rentCondition.conditionUrl
+	const houseDataArr = await search(params);
+	console.log("house data length:", houseDataArr.length);
 	for (const houseData of houseDataArr) {
 		console.log(houseData);
 		const existHouse = await prisma.rentHouse.findUnique({
@@ -83,6 +84,7 @@ export default {
 		const prisma = new PrismaClient({ adapter });
 
 		const conditions = await prisma.rentCondition.findMany();
+		console.log('conditions length:', conditions.length);
 		for (const condition of conditions) {
 			if (condition.conditionUrl) {
 				await getHouseFromConditionAndNotifyNewHouse(prisma, {

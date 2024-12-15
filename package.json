@@ -12,7 +12,7 @@
     "@cloudflare/workers-types": "^4.20240419.0",
     "prisma": "^5.12.1",
     "typescript": "^5.0.4",
-    "wrangler": "^3.0.0"
+    "wrangler": "^3.91.0"
   },
   "dependencies": {
     "@prisma/adapter-d1": "^5.12.1",
